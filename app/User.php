@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /** Definisce la relazione tra la tabella Expense e User del DB */
+    public function expenses() {
+        return $this->hasMany('App\Expense');
+    }
 }

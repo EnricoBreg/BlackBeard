@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ExpenseController@index')->name('home');
+
+/** Per creare tutte le rotte per il CRUD completo di una risorsa senza farlo manualmente */
+Route::resource('expense', 'ExpenseController')->except(['destroy']); // except(...) costruisce tutte le rotte tranne per la destroy
+
+Route::get('/expenses/{expense}/delete', 'ExpenseController@destroy');
